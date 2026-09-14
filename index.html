@@ -1,112 +1,166 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="看尽长安花——一场关于长安、春风与少年意气的古风诗意之旅">
-<title>看尽长安花</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>看尽长安花</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="opening">
-  <div class="opening-content">
-    <div class="opening-seal">长安</div>
-    <p class="opening-small">一朝春尽</p>
-    <h2>看尽长安花</h2>
-    <div class="opening-line"></div>
-    <p class="opening-loading">春风入城……</p>
+  <div id="opening" class="opening">
+    <div class="opening-title">看尽长安花</div>
+    <div class="opening-subtitle">长安一梦 · 花落成诗</div>
+    <button id="enterBtn">入长安</button>
   </div>
-</div>
-<div id="inkLayer"></div>
-<div id="poemPaper">
-  <div class="paper-decoration">花</div>
-  <div id="paperPoem"></div>
-  <div id="paperAuthor"></div>
-</div>
-<canvas id="petalCanvas"></canvas>
-<div class="mouse-light"></div>
 
-<header class="navbar">
-  <div class="logo">看尽长安花</div>
-  <nav>
-    <a href="#home">首页</a>
-    <a href="#story">长安</a>
-    <a href="#poem">诗笺</a>
-    <a href="#about">关于</a>
+  <div id="inkLayer"></div>
+  <div id="poemPaper" class="poem-paper" aria-hidden="true">
+    <button id="closePoem" class="close-poem" aria-label="关闭">×</button>
+    <div class="paper-seal">长安</div>
+    <div id="poemText"></div>
+  </div>
+
+  <canvas id="petalCanvas"></canvas>
+  <div id="mouseLight"></div>
+
+  <nav class="navbar">
+    <div class="brand">看尽长安花</div>
+    <div class="nav-links">
+      <a href="#home">长安夜</a>
+      <a href="#story">城中事</a>
+      <a href="#poems">花间诗</a>
+      <a href="#about">关于</a>
+    </div>
   </nav>
-</header>
-<main id="home" class="hero">
-  <div class="night-fog"></div>
-  <div class="city-wall">
-    <div class="city-tower tower-left"><div class="tower-roof"></div><div class="tower-light"></div></div>
-    <div class="city-tower tower-right"><div class="tower-roof"></div><div class="tower-light"></div></div>
-    <div class="city-gate"><div class="gate-door"></div></div>
-  </div>
-  <div class="chang-an-street">
-    <div class="street-light light-1"></div>
-    <div class="street-light light-2"></div>
-    <div class="street-light light-3"></div>
-    <div class="street-light light-4"></div>
-    <div class="street-light light-5"></div>
-    <div class="street-light light-6"></div>
-    <div class="person person-1"></div>
-    <div class="person person-2"></div>
-    <div class="person person-3"></div>
-  </div>
-  <div class="hero-content">
-    <p class="small-title">一朝春尽 · 看尽长安花</p>
-    <h1>看尽<br><span>长安花</span></h1>
-    <div class="divider"></div>
-    <p class="description">春风得意马蹄疾，一日看尽长安花。</p>
-    <p class="petal-hint">· 轻触花瓣，拾一句诗 ·</p>
-    <button id="enterBtn">入长安 <span>→</span></button>
-  </div>
-  <div class="scroll-tip"><span></span>向下探索</div>
-</main>
-<section id="story" class="section story">
-  <div class="section-title"><span>01</span><h2>长安 · 花开</h2></div>
-  <div class="story-content">
-    <div class="story-text">
-      <p class="ancient">昔日长安，春风十里。</p>
-      <p>城门之外，是漫漫黄沙与远山。城门之内，是车马如龙、灯火万家。</p>
-      <p>少年策马而来，衣袂迎风。他曾在漫长岁月里埋首书卷，终于等来这一日。</p>
-      <p>春风吹过朱雀大街，满城花开。</p>
-      <p class="quote">“春风得意马蹄疾，一日看尽长安花。”</p>
-    </div>
-    <div class="flower-art">
+
+  <main>
+    <section id="home" class="hero">
+      <div class="night-haze"></div>
       <div class="moon"></div>
-      <div class="branch"></div>
-      <div class="flower flower-1">✿</div>
-      <div class="flower flower-2">✿</div>
-      <div class="flower flower-3">✿</div>
-      <div class="flower flower-4">✿</div>
-    </div>
-  </div>
-</section>
-<section id="poem" class="section poem-section">
-  <div class="section-title center"><span>02</span><h2>诗 · 笺</h2></div>
-  <div class="poem-card">
-    <div class="seal">长安</div>
-    <p>昔日龌龊不足夸</p>
-    <p>今朝放荡思无涯</p>
-    <p>春风得意马蹄疾</p>
-    <p class="highlight">一日看尽长安花</p>
-    <small>—— 孟郊《登科后》</small>
-  </div>
-</section>
-<section id="about" class="section about">
-  <div class="section-title"><span>03</span><h2>关于 · 长安</h2></div>
-  <div class="about-box">
-    <p>人生如一场长途跋涉。</p>
-    <p>有人困于山野，有人奔赴长安。</p>
-    <p>而所谓长安，或许并不只是一座城。</p>
-    <p class="gold">它是少年心中，那个值得奔赴的地方。</p>
-  </div>
-</section>
-<footer>
-  <p>看尽长安花</p>
-  <span>愿你终有一日，春风得意。</span>
-</footer>
-<script src="script.js"></script>
+      <div class="stars"></div>
+
+      <div class="chang-an-scene" aria-label="唐代长安城夜景">
+        <div class="far-mountains"></div>
+        <div class="far-clock-tower">
+          <div class="tower-roof"></div>
+          <div class="tower-body"></div>
+          <div class="tower-bell"></div>
+          <span class="tower-glow"></span>
+        </div>
+
+        <div class="city-wall">
+          <div class="wall-top"></div>
+          <div class="watchtower watchtower-left"><span></span></div>
+          <div class="watchtower watchtower-right"><span></span></div>
+        </div>
+
+        <div class="city-gate">
+          <div class="gate-roof"></div>
+          <div class="gate-building">
+            <span class="gate-window"></span>
+            <span class="gate-window"></span>
+            <span class="gate-window"></span>
+          </div>
+          <div class="gate-opening"></div>
+        </div>
+
+        <div class="vermilion-arch">
+          <div class="arch-roof"></div>
+          <div class="arch-pillars left"></div>
+          <div class="arch-pillars right"></div>
+          <div class="arch-sign">朱雀大街</div>
+        </div>
+
+        <div class="restaurant restaurant-left">
+          <div class="restaurant-roof"></div>
+          <div class="restaurant-body">
+            <span class="restaurant-sign">醉长安</span>
+            <i></i><i></i><i></i>
+          </div>
+          <div class="balcony"></div>
+        </div>
+
+        <div class="restaurant restaurant-right">
+          <div class="restaurant-roof"></div>
+          <div class="restaurant-body">
+            <span class="restaurant-sign">花间楼</span>
+            <i></i><i></i><i></i>
+          </div>
+          <div class="balcony"></div>
+        </div>
+
+        <div class="street">
+          <div class="street-perspective"></div>
+          <div class="road-mark mark1"></div>
+          <div class="road-mark mark2"></div>
+          <div class="road-mark mark3"></div>
+        </div>
+
+        <div class="lantern-row left-lanterns"></div>
+        <div class="lantern-row right-lanterns"></div>
+
+        <div class="carriage carriage-one">
+          <div class="carriage-roof"></div>
+          <div class="carriage-box"><span></span></div>
+          <div class="wheel wheel-a"></div>
+          <div class="wheel wheel-b"></div>
+          <div class="horse"><b></b></div>
+        </div>
+
+        <div class="carriage carriage-two">
+          <div class="carriage-roof"></div>
+          <div class="carriage-box"><span></span></div>
+          <div class="wheel wheel-a"></div>
+          <div class="wheel wheel-b"></div>
+          <div class="horse"><b></b></div>
+        </div>
+
+        <div class="pedestrians">
+          <i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">长安十二时辰 · 夜游图</p>
+        <h1>看尽长安花</h1>
+        <p>一城灯火，照见千年风华。<br>朱雀大街尽头，仍有诗意未眠。</p>
+        <a class="scroll-hint" href="#story">向城中走去 ↓</a>
+      </div>
+    </section>
+
+    <section id="story" class="content-section">
+      <div class="section-inner">
+        <p class="section-label">壹 · 城中事</p>
+        <h2>月落长安，灯火未央</h2>
+        <p class="lead">朱雀大街贯穿城南北，牌楼隐在夜色里，酒旗随风轻摆。车辙声、人语声与更鼓声交叠，仿佛一场千年前的梦仍在此刻发生。</p>
+        <div class="story-grid">
+          <article><span>01</span><h3>朱雀大街</h3><p>万国来朝的长街，在月色中留下纵深而庄严的城市轴线。</p></article>
+          <article><span>02</span><h3>坊市灯火</h3><p>酒楼、茶肆与夜行人影，让古城的夜晚有了烟火温度。</p></article>
+          <article><span>03</span><h3>钟声入梦</h3><p>远处钟楼沉沉一响，穿过屋檐与长街，落进每个人的心里。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="poems" class="poem-section">
+      <div class="section-inner">
+        <p class="section-label">贰 · 花间诗</p>
+        <h2>花落成诗</h2>
+        <p class="lead">轻触飘落的花瓣，让一首诗从长安夜色里缓缓浮现。</p>
+        <div class="flower-art"><span>✿</span><span>❀</span><span>✾</span><span>✽</span><span>✿</span></div>
+        <p class="tip">点击花瓣 · 诗意自来</p>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="section-inner">
+        <p class="section-label">叁 · 一梦长安</p>
+        <h2>愿你看尽长安花</h2>
+        <p class="lead">这是一个以古典诗意、城市夜景与交互动画构成的小型沉浸式网页。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 看尽长安花 · 长安一梦</footer>
+  <script src="script.js"></script>
 </body>
 </html>
