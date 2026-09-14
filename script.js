@@ -6,35 +6,12 @@ let width,height;
 function resizeCanvas(){width=canvas.width=window.innerWidth;height=canvas.height=window.innerHeight}
 resizeCanvas();
 window.addEventListener("resize",resizeCanvas);
-const yinyue=document.getElementById("yinyue");
-const bgm=document.getElementById("bgm");
-const musicBtn=document.getElementById("musicBtn");
-const musicIcon=document.getElementById("musicIcon");
-const musicText=document.getElementById("musicText");
-let musicPlaying=false;
-yinyue.volume=.45; bgm.volume=.18;
-async function playMusic(){
-  try{
-    await yinyue.play();
-    await bgm.play();
-    musicPlaying=true;
-    musicText.textContent="听音乐中";
-    musicIcon.textContent="♪";
-    musicBtn.classList.add("music-playing");
-  }catch(error){console.log("浏览器阻止了自动播放，请点击音乐按钮。")}
-}
-function pauseMusic(){
-  yinyue.pause(); bgm.pause();
-  musicPlaying=false;
-  musicText.textContent="听音乐";
-  musicIcon.textContent="♫";
-  musicBtn.classList.remove("music-playing");
-}
-musicBtn.addEventListener("click",()=>musicPlaying?pauseMusic():playMusic());
+
+
 document.getElementById("enterBtn").addEventListener("click",()=>{
-  playMusic();
   document.getElementById("story").scrollIntoView({behavior:"smooth"});
 });
+
 document.addEventListener("mousemove",e=>{
   mouseLight.style.left=e.clientX+"px";
   mouseLight.style.top=e.clientY+"px";
