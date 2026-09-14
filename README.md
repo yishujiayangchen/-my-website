@@ -6,5 +6,3 @@
 - style.css
 - script.js
 - background.svg
-- music/guqin.mp3
-- music/windbell.mp3
