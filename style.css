@@ -1,615 +1,1344 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
 
 html {
-    scroll-behavior: smooth;
+scroll-behavior: smooth;
 }
 
 body {
-    background: #11100e;
-    color: #eee7d7;
-    font-family:
-        "Noto Serif SC",
-        "STSong",
-        "SimSun",
-        serif;
-    overflow-x: hidden;
+
+background: #0b0c0b;
+
+color: #eee7d7;
+
+font-family:
+    "Noto Serif SC",
+    "STSong",
+    "SimSun",
+    serif;
+
+overflow-x: hidden;
+
 }
 
-/* =========================
-   花瓣画布
-========================= */
+/* =================================
+花瓣 Canvas
+================================= */
 
 #petalCanvas {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 10;
+
+position: fixed;
+
+inset: 0;
+
+width: 100%;
+height: 100%;
+
+/*
+   Canvas 本身需要接收点击，
+   因此这里不能设置 pointer-events:none
+*/
+
+pointer-events: auto;
+
+z-index: 50;
+
 }
 
-/* =========================
-   鼠标光晕
-========================= */
+/* =================================
+鼠标光晕
+================================= */
 
 .mouse-light {
-    position: fixed;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    pointer-events: none;
-    background: radial-gradient(
+
+position: fixed;
+
+width: 320px;
+height: 320px;
+
+border-radius: 50%;
+
+pointer-events: none;
+
+background:
+    radial-gradient(
         circle,
         rgba(214, 164, 78, 0.08),
         transparent 70%
     );
-    transform: translate(-50%, -50%);
-    z-index: 2;
+
+transform:
+    translate(-50%, -50%);
+
+z-index: 45;
+
 }
 
-/* =========================
-   导航
-========================= */
+/* =================================
+导航
+================================= */
 
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 75px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+position: fixed;
 
-    padding: 0 7%;
+top: 0;
+left: 0;
 
-    background: rgba(17, 16, 14, 0.35);
-    backdrop-filter: blur(8px);
+width: 100%;
+height: 75px;
 
-    z-index: 20;
+display: flex;
+
+align-items: center;
+
+justify-content: space-between;
+
+padding: 0 7%;
+
+background:
+    linear-gradient(
+        rgba(10, 10, 9, 0.6),
+        transparent
+    );
+
+backdrop-filter: blur(5px);
+
+z-index: 100;
+
 }
 
 .logo {
-    font-size: 20px;
-    letter-spacing: 5px;
-    color: #d8b26d;
+
+color: #d8b26d;
+
+font-size: 20px;
+
+letter-spacing: 5px;
+
 }
 
 .navbar nav {
-    display: flex;
-    gap: 38px;
+
+display: flex;
+
+gap: 38px;
+
 }
 
 .navbar a {
-    color: #cfc6b4;
-    text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 3px;
 
-    transition: 0.3s;
+color: #cfc6b4;
+
+text-decoration: none;
+
+font-size: 14px;
+
+letter-spacing: 3px;
+
+transition: 0.3s;
+
 }
 
 .navbar a:hover {
-    color: #e0b766;
+
+color: #e0b766;
+
 }
 
-/* =========================
-   Hero
-========================= */
+/* =================================
+首页
+================================= */
 
 .hero {
-    min-height: 100vh;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+min-height: 100vh;
 
-    position: relative;
+position: relative;
 
-    background:
-        radial-gradient(
-            circle at 50% 35%,
-            rgba(143, 69, 47, 0.2),
-            transparent 45%
-        ),
-        linear-gradient(
-            135deg,
-            #171512,
-            #0d0c0a
-        );
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+overflow: hidden;
+
+background:
+
+    linear-gradient(
+        rgba(8, 9, 9, 0.12),
+        rgba(8, 9, 9, 0.3)
+    ),
+
+    url("background.svg")
+
+    center center /
+
+    cover
+
+    no-repeat;
+
 }
+
+/* 背景呼吸效果 */
 
 .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent 49.8%,
-            rgba(211, 173, 103, 0.06) 50%,
-            transparent 50.2%
-        );
+content: "";
 
-    opacity: 0.5;
+position: absolute;
+
+inset: -5%;
+
+background:
+
+    radial-gradient(
+        circle at 50% 40%,
+        rgba(213, 181, 112, 0.08),
+        transparent 45%
+    );
+
+animation:
+    backgroundBreath
+    8s
+    ease-in-out
+    infinite;
+
+pointer-events: none;
+
 }
 
+@keyframes backgroundBreath {
+
+0%,
+100% {
+
+    transform:
+        scale(1);
+
+    opacity:
+        0.5;
+}
+
+50% {
+
+    transform:
+        scale(1.08);
+
+    opacity:
+        0.8;
+}
+
+}
+
+/* =================================
+首页文字
+================================= */
+
 .hero-content {
-    text-align: center;
-    z-index: 5;
+
+position: relative;
+
+text-align: center;
+
+z-index: 10;
+
+animation:
+    heroAppear
+    1.8s
+    ease
+    both;
+
+}
+
+@keyframes heroAppear {
+
+from {
+
+    opacity: 0;
+
+    transform:
+        translateY(30px);
+}
+
+to {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
 }
 
 .small-title {
-    color: #b9985b;
-    letter-spacing: 8px;
-    font-size: 14px;
-    margin-bottom: 35px;
+
+color: #c4a263;
+
+letter-spacing: 8px;
+
+font-size: 14px;
+
+margin-bottom: 35px;
+
 }
 
 h1 {
-    font-size: clamp(70px, 12vw, 150px);
-    line-height: 1.05;
-    font-weight: 400;
 
-    letter-spacing: 15px;
+font-size:
+    clamp(
+        70px,
+        12vw,
+        150px
+    );
 
-    color: #e9dfcb;
+line-height: 1.05;
 
-    text-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.7);
+font-weight: 400;
+
+letter-spacing: 15px;
+
+color: #eee5d3;
+
+text-shadow:
+    0 5px 30px #000,
+    0 0 50px rgba(0,0,0,0.5);
+
 }
 
 h1 span {
-    color: #cda35d;
+
+color: #d1a75d;
+
 }
 
 .divider {
-    width: 70px;
-    height: 1px;
 
-    background: #b8904f;
+width: 70px;
 
-    margin: 35px auto;
+height: 1px;
+
+background: #b8904f;
+
+margin: 35px auto;
+
 }
 
 .description {
-    color: #aaa294;
-    letter-spacing: 5px;
-    font-size: 15px;
+
+color: #d0c7b8;
+
+letter-spacing: 5px;
+
+font-size: 15px;
+
 }
 
+/* =================================
+花瓣提示
+================================= */
+
+.petal-hint {
+
+margin-top: 18px;
+
+color:
+    rgba(
+        220,
+        194,
+        143,
+        0.7
+    );
+
+font-size: 11px;
+
+letter-spacing: 3px;
+
+animation:
+    hintFade
+    3s
+    ease-in-out
+    infinite;
+
+}
+
+@keyframes hintFade {
+
+0%,
+100% {
+
+    opacity: 0.4;
+}
+
+50% {
+
+    opacity: 1;
+}
+
+}
+
+/* =================================
+按钮
+================================= */
+
 button {
-    margin-top: 50px;
 
-    padding: 15px 35px;
+margin-top: 50px;
 
-    border: 1px solid #a98750;
-    background: transparent;
+padding: 15px 35px;
 
-    color: #d6b56e;
+border:
+    1px solid #a98750;
 
-    font-family: inherit;
-    letter-spacing: 4px;
+background:
+    rgba(
+        10,
+        10,
+        10,
+        0.35
+    );
 
-    cursor: pointer;
+color: #d6b56e;
 
-    transition: 0.4s;
+font-family: inherit;
+
+letter-spacing: 4px;
+
+cursor: pointer;
+
+transition: 0.4s;
+
 }
 
 button span {
-    margin-left: 20px;
+
+margin-left: 20px;
+
 }
 
 button:hover {
-    background: #a98750;
-    color: #15120e;
-    transform: translateY(-4px);
+
+background:
+    #a98750;
+
+color:
+    #15120e;
+
+transform:
+    translateY(-4px);
+
 }
 
-/* 滚动提示 */
+/* =================================
+花瓣诗句弹窗
+================================= */
+
+.poem-popup {
+
+position: fixed;
+
+pointer-events: none;
+
+z-index: 80;
+
+transform:
+    translate(
+        -50%,
+        -100%
+    );
+
+padding:
+    12px 22px;
+
+color:
+    #ead8ae;
+
+font-size:
+    16px;
+
+letter-spacing:
+    3px;
+
+white-space:
+    nowrap;
+
+background:
+    rgba(
+        20,
+        17,
+        13,
+        0.88
+    );
+
+border:
+    1px solid
+    rgba(
+        200,
+        163,
+        91,
+        0.5
+    );
+
+box-shadow:
+    0 10px 40px
+    rgba(0,0,0,0.5);
+
+backdrop-filter:
+    blur(8px);
+
+animation:
+    poemAppear
+    2.8s
+    ease
+    forwards;
+
+}
+
+.poem-popup::after {
+
+content: "";
+
+position: absolute;
+
+bottom: -6px;
+
+left: 50%;
+
+width: 10px;
+height: 10px;
+
+background:
+    rgba(
+        20,
+        17,
+        13,
+        0.88
+    );
+
+border-right:
+    1px solid
+    rgba(
+        200,
+        163,
+        91,
+        0.5
+    );
+
+border-bottom:
+    1px solid
+    rgba(
+        200,
+        163,
+        91,
+        0.5
+    );
+
+transform:
+    translateX(-50%)
+    rotate(45deg);
+
+}
+
+@keyframes poemAppear {
+
+0% {
+
+    opacity: 0;
+
+    transform:
+        translate(
+            -50%,
+            -70%
+        )
+        scale(0.8);
+}
+
+15% {
+
+    opacity: 1;
+
+    transform:
+        translate(
+            -50%,
+            -100%
+        )
+        scale(1);
+}
+
+75% {
+
+    opacity: 1;
+}
+
+100% {
+
+    opacity: 0;
+
+    transform:
+        translate(
+            -50%,
+            -140%
+        )
+        scale(1.05);
+}
+
+}
+
+/* =================================
+向下滚动
+================================= */
 
 .scroll-tip {
-    position: absolute;
-    bottom: 35px;
-    left: 50%;
-    transform: translateX(-50%);
 
-    color: #766f63;
-    font-size: 11px;
-    letter-spacing: 4px;
+position: absolute;
+
+bottom: 35px;
+
+left: 50%;
+
+transform:
+    translateX(-50%);
+
+color:
+    #aaa092;
+
+font-size:
+    11px;
+
+letter-spacing:
+    4px;
+
+z-index: 10;
+
 }
 
 .scroll-tip span {
-    display: block;
 
-    width: 1px;
-    height: 35px;
+display: block;
 
-    margin: 0 auto 12px;
+width: 1px;
 
-    background: #8d754e;
+height: 35px;
+
+margin:
+    0 auto 12px;
+
+background:
+    #a88957;
+
 }
 
-/* =========================
-   Section
-========================= */
+/* =================================
+普通 Section
+================================= */
 
 .section {
-    min-height: 100vh;
-    padding: 130px 10%;
 
-    position: relative;
-}
+min-height: 100vh;
 
-.story {
-    background:
-        linear-gradient(
-            rgba(17,16,14,0.92),
-            rgba(17,16,14,0.98)
-        );
+padding:
+    130px 10%;
+
+position: relative;
+
+background:
+    #11110f;
+
 }
 
 .section-title {
-    display: flex;
-    align-items: center;
-    gap: 20px;
 
-    margin-bottom: 90px;
+display: flex;
+
+align-items: center;
+
+gap: 20px;
+
+margin-bottom: 90px;
+
 }
 
 .section-title span {
-    color: #9e7842;
-    font-size: 13px;
-    letter-spacing: 2px;
+
+color:
+    #9e7842;
+
+font-size:
+    13px;
+
 }
 
 .section-title h2 {
-    font-size: 42px;
-    font-weight: 400;
-    letter-spacing: 10px;
+
+font-size:
+    42px;
+
+font-weight:
+    400;
+
+letter-spacing:
+    10px;
+
 }
 
 .center {
-    justify-content: center;
+
+justify-content:
+    center;
+
 }
 
-/* =========================
-   Story
-========================= */
+/* =================================
+长安故事
+================================= */
+
+.story {
+
+background:
+
+    radial-gradient(
+        circle at 70% 30%,
+        rgba(
+            126,
+            77,
+            53,
+            0.12
+        ),
+        transparent 45%
+    ),
+
+    #11110f;
+
+}
 
 .story-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
-    max-width: 1100px;
-    margin: auto;
+display: flex;
+
+justify-content:
+    space-between;
+
+align-items:
+    center;
+
+max-width:
+    1100px;
+
+margin:
+    auto;
+
 }
 
 .story-text {
-    max-width: 500px;
 
-    color: #a9a095;
+max-width:
+    500px;
 
-    line-height: 2.5;
-    font-size: 15px;
+color:
+    #aaa197;
+
+line-height:
+    2.5;
+
+font-size:
+    15px;
+
 }
 
 .story-text p {
-    margin-bottom: 20px;
+
+margin-bottom:
+    20px;
+
 }
 
 .ancient {
-    font-size: 25px;
-    color: #d2c5af;
+
+font-size:
+    25px;
+
+color:
+    #d2c5af;
+
 }
 
 .quote {
-    color: #c9a562;
-    margin-top: 40px;
+
+color:
+    #c9a562;
+
+margin-top:
+    40px;
+
 }
 
-/* =========================
-   花枝艺术
-========================= */
+/* =================================
+花枝
+================================= */
 
 .flower-art {
-    width: 350px;
-    height: 400px;
 
-    position: relative;
+width:
+    350px;
+
+height:
+    400px;
+
+position:
+    relative;
+
 }
 
 .moon {
-    position: absolute;
 
-    width: 180px;
-    height: 180px;
+position:
+    absolute;
 
-    border-radius: 50%;
+width:
+    180px;
 
-    background: #d8c49b;
+height:
+    180px;
 
-    top: 20px;
-    right: 30px;
+border-radius:
+    50%;
 
-    box-shadow:
-        0 0 80px rgba(217, 196, 155, 0.08);
+background:
+    #d8c49b;
+
+top:
+    20px;
+
+right:
+    30px;
+
+box-shadow:
+    0 0 80px
+    rgba(
+        217,
+        196,
+        155,
+        0.08
+    );
+
 }
 
 .branch {
-    position: absolute;
 
-    width: 330px;
-    height: 2px;
+position:
+    absolute;
 
-    background: #65513a;
+width:
+    330px;
 
-    transform:
-        rotate(-25deg)
-        translateY(200px);
+height:
+    2px;
 
-    transform-origin: left;
+background:
+    #65513a;
+
+transform:
+    rotate(-25deg)
+    translateY(200px);
+
 }
 
 .flower {
-    position: absolute;
 
-    color: #b87368;
+position:
+    absolute;
 
-    font-size: 50px;
+color:
+    #b87368;
 
-    animation: flowerFloat 5s ease-in-out infinite;
+font-size:
+    50px;
+
+animation:
+    flowerFloat
+    5s
+    ease-in-out
+    infinite;
+
 }
 
 .flower-1 {
-    right: 40px;
-    top: 100px;
+
+right:
+    40px;
+
+top:
+    100px;
+
 }
 
 .flower-2 {
-    right: 120px;
-    top: 180px;
-    animation-delay: 1s;
+
+right:
+    120px;
+
+top:
+    180px;
+
+animation-delay:
+    1s;
+
 }
 
 .flower-3 {
-    right: 200px;
-    top: 240px;
-    animation-delay: 2s;
+
+right:
+    200px;
+
+top:
+    240px;
+
+animation-delay:
+    2s;
+
 }
 
 .flower-4 {
-    right: 80px;
-    top: 300px;
-    animation-delay: 3s;
+
+right:
+    80px;
+
+top:
+    300px;
+
+animation-delay:
+    3s;
+
 }
 
 @keyframes flowerFloat {
-    0%,100% {
-        transform: rotate(0deg) translateY(0);
-    }
 
-    50% {
-        transform: rotate(8deg) translateY(-8px);
-    }
+0%,
+100% {
+
+    transform:
+        rotate(0)
+        translateY(0);
 }
 
-/* =========================
-   诗笺
-========================= */
+50% {
+
+    transform:
+        rotate(8deg)
+        translateY(-8px);
+}
+
+}
+
+/* =================================
+诗笺
+================================= */
 
 .poem-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(111, 62, 45, 0.18),
-            transparent 60%
-        );
+display:
+    flex;
+
+flex-direction:
+    column;
+
+justify-content:
+    center;
+
+background:
+
+    radial-gradient(
+        circle at center,
+        rgba(
+            111,
+            62,
+            45,
+            0.18
+        ),
+        transparent 60%
+    ),
+
+    #11110f;
+
 }
 
 .poem-card {
-    position: relative;
 
-    width: min(500px, 90%);
+position:
+    relative;
 
-    margin: auto;
+width:
+    min(
+        500px,
+        90%
+    );
 
-    padding: 70px 30px;
+margin:
+    auto;
 
-    text-align: center;
+padding:
+    70px 30px;
 
-    border: 1px solid rgba(183, 145, 82, 0.3);
+text-align:
+    center;
 
-    background:
-        rgba(33, 29, 23, 0.7);
+border:
+    1px solid
+    rgba(
+        183,
+        145,
+        82,
+        0.3
+    );
 
-    box-shadow:
-        0 30px 80px rgba(0,0,0,0.4);
+background:
+    rgba(
+        33,
+        29,
+        23,
+        0.7
+    );
+
+box-shadow:
+    0 30px 80px
+    rgba(
+        0,
+        0,
+        0,
+        0.4
+    );
+
 }
 
 .poem-card p {
-    font-size: 25px;
 
-    line-height: 2.2;
+font-size:
+    25px;
 
-    letter-spacing: 8px;
+line-height:
+    2.2;
 
-    color: #d7ccbb;
+letter-spacing:
+    8px;
+
+color:
+    #d7ccbb;
+
 }
 
 .poem-card .highlight {
-    color: #d2a65c;
+
+color:
+    #d2a65c;
+
 }
 
 .poem-card small {
-    display: block;
 
-    margin-top: 30px;
+display:
+    block;
 
-    color: #7f776b;
+margin-top:
+    30px;
 
-    letter-spacing: 3px;
+color:
+    #7f776b;
+
+letter-spacing:
+    3px;
+
 }
 
 .seal {
-    position: absolute;
 
-    top: 25px;
-    right: 25px;
+position:
+    absolute;
 
-    width: 45px;
-    height: 45px;
+top:
+    25px;
 
-    border: 2px solid #9e3e34;
+right:
+    25px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+width:
+    45px;
 
-    color: #b84b40;
+height:
+    45px;
 
-    writing-mode: vertical-rl;
+border:
+    2px solid
+    #9e3e34;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+color:
+    #b84b40;
+
+writing-mode:
+    vertical-rl;
+
 }
 
-/* =========================
-   About
-========================= */
+/* =================================
+关于
+================================= */
 
 .about {
-    min-height: 70vh;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+min-height:
+    70vh;
+
+display:
+    flex;
+
+flex-direction:
+    column;
+
+justify-content:
+    center;
+
 }
 
 .about-box {
-    max-width: 700px;
 
-    margin: auto;
+max-width:
+    700px;
 
-    text-align: center;
+margin:
+    auto;
 
-    font-size: 18px;
+text-align:
+    center;
 
-    line-height: 2.5;
+font-size:
+    18px;
 
-    color: #999187;
+line-height:
+    2.5;
+
+color:
+    #999187;
+
 }
 
 .about-box .gold {
-    margin-top: 35px;
 
-    color: #c6a05d;
+margin-top:
+    35px;
 
-    font-size: 22px;
+color:
+    #c6a05d;
+
+font-size:
+    22px;
+
 }
 
-/* =========================
-   Footer
-========================= */
+/* =================================
+Footer
+================================= */
 
 footer {
-    padding: 70px 20px;
 
-    text-align: center;
+padding:
+    70px 20px;
 
-    border-top: 1px solid rgba(255,255,255,0.05);
+text-align:
+    center;
 
-    color: #746d62;
+border-top:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.05
+    );
+
+color:
+    #746d62;
+
 }
 
 footer p {
-    color: #c3a261;
 
-    letter-spacing: 8px;
+color:
+    #c3a261;
 
-    margin-bottom: 15px;
+letter-spacing:
+    8px;
+
+margin-bottom:
+    15px;
+
 }
 
 footer span {
-    font-size: 12px;
 
-    letter-spacing: 3px;
+font-size:
+    12px;
+
+letter-spacing:
+    3px;
+
 }
 
-/* =========================
-   手机适配
-========================= */
+/* =================================
+手机适配
+================================= */
 
 @media (max-width: 700px) {
 
-    .navbar {
-        padding: 0 25px;
-    }
+.navbar {
 
-    .navbar nav {
-        gap: 15px;
-    }
+    padding:
+        0 20px;
+}
 
-    .navbar a {
-        font-size: 11px;
-        letter-spacing: 1px;
-    }
 
-    .logo {
-        font-size: 15px;
-        letter-spacing: 3px;
-    }
+.navbar nav {
 
-    h1 {
-        font-size: 70px;
-        letter-spacing: 8px;
-    }
+    gap:
+        13px;
+}
 
-    .small-title {
-        letter-spacing: 4px;
-    }
 
-    .description {
-        font-size: 12px;
-    }
+.navbar a {
 
-    .section {
-        padding: 100px 25px;
-    }
+    font-size:
+        10px;
 
-    .section-title {
-        margin-bottom: 50px;
-    }
+    letter-spacing:
+        1px;
+}
 
-    .section-title h2 {
-        font-size: 30px;
-        letter-spacing: 5px;
-    }
 
-    .story-content {
-        flex-direction: column;
-    }
+.logo {
 
-    .story-text {
-        font-size: 14px;
-    }
+    font-size:
+        14px;
 
-    .flower-art {
-        transform: scale(0.75);
-        margin-top: 40px;
-    }
+    letter-spacing:
+        2px;
+}
 
-    .poem-card p {
-        font-size: 19px;
-        letter-spacing: 4px;
-    }
+
+h1 {
+
+    font-size:
+        70px;
+
+    letter-spacing:
+        8px;
+}
+
+
+.small-title {
+
+    letter-spacing:
+        4px;
+}
+
+
+.description {
+
+    font-size:
+        11px;
+
+    padding:
+        0 15px;
+}
+
+
+.section {
+
+    padding:
+        100px 25px;
+}
+
+
+.section-title {
+
+    margin-bottom:
+        50px;
+}
+
+
+.section-title h2 {
+
+    font-size:
+        30px;
+
+    letter-spacing:
+        5px;
+}
+
+
+.story-content {
+
+    flex-direction:
+        column;
+}
+
+
+.story-text {
+
+    font-size:
+        14px;
+}
+
+
+.flower-art {
+
+    transform:
+        scale(0.75);
+
+    margin-top:
+        40px;
+}
+
+
+.poem-card p {
+
+    font-size:
+        19px;
+
+    letter-spacing:
+        4px;
+}
+
+
+.poem-popup {
+
+    font-size:
+        13px;
+
+    padding:
+        9px 14px;
+
+    letter-spacing:
+        2px;
+
+    max-width:
+        85vw;
+
+    white-space:
+        normal;
+
+    text-align:
+        center;
+}
 
 }
