@@ -1,334 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 1920 1080"
-     preserveAspectRatio="xMidYMid slice">
-
-    <defs>
-
-        <!-- 天空渐变 -->
-        <linearGradient id="sky"
-                        x1="0"
-                        y1="0"
-                        x2="0"
-                        y2="1">
-            <stop offset="0%" stop-color="#090b0d"/>
-            <stop offset="55%" stop-color="#171717"/>
-            <stop offset="100%" stop-color="#29231d"/>
-        </linearGradient>
-
-        <!-- 月亮渐变 -->
-        <radialGradient id="moon">
-            <stop offset="0%" stop-color="#eee4c9"/>
-            <stop offset="65%" stop-color="#d6c6a4"/>
-            <stop offset="100%" stop-color="#9d8b6c"/>
-        </radialGradient>
-
-        <!-- 山体渐变 -->
-        <linearGradient id="mountain"
-                        x1="0"
-                        y1="0"
-                        x2="0"
-                        y2="1">
-            <stop offset="0%" stop-color="#34312c"/>
-            <stop offset="100%" stop-color="#111211"/>
-        </linearGradient>
-
-        <!-- 水面 -->
-        <linearGradient id="water"
-                        x1="0"
-                        y1="0"
-                        x2="0"
-                        y2="1">
-            <stop offset="0%" stop-color="#262724"/>
-            <stop offset="100%" stop-color="#090a09"/>
-        </linearGradient>
-
-        <filter id="blur">
-            <feGaussianBlur stdDeviation="12"/>
-        </filter>
-
-    </defs>
-
-
-    <!-- 天空 -->
-
-    <rect width="1920"
-          height="1080"
-          fill="url(#sky)"/>
-
-
-    <!-- 月光 -->
-
-    <circle
-        cx="1480"
-        cy="230"
-        r="115"
-        fill="url(#moon)"
-        opacity="0.9"/>
-
-    <circle
-        cx="1480"
-        cy="230"
-        r="170"
-        fill="#d8caa8"
-        opacity="0.08"
-        filter="url(#blur)"/>
-
-
-    <!-- 远山 -->
-
-    <path
-        d="
-        M0 620
-        L180 500
-        L290 570
-        L470 410
-        L630 560
-        L820 390
-        L1000 550
-        L1170 430
-        L1320 560
-        L1510 390
-        L1700 540
-        L1920 420
-        L1920 800
-        L0 800 Z"
-        fill="#252622"
-        opacity="0.75"/>
-
-
-    <!-- 第二层山 -->
-
-    <path
-        d="
-        M0 700
-        L250 580
-        L430 650
-        L620 520
-        L800 660
-        L1050 540
-        L1210 670
-        L1420 530
-        L1620 650
-        L1810 540
-        L1920 590
-        L1920 850
-        L0 850 Z"
-        fill="url(#mountain)"/>
-
-
-    <!-- 山间薄雾 -->
-
-    <path
-        d="
-        M0 650
-        C300 590 500 700 800 620
-        C1100 540 1350 690 1920 600
-        L1920 760
-        L0 760 Z"
-        fill="#b5aa91"
-        opacity="0.07"
-        filter="url(#blur)"/>
-
-
-    <!-- 水面 -->
-
-    <rect
-        x="0"
-        y="760"
-        width="1920"
-        height="320"
-        fill="url(#water)"/>
-
-
-    <!-- 水面倒影 -->
-
-    <ellipse
-        cx="1480"
-        cy="820"
-        rx="180"
-        ry="35"
-        fill="#c9bb98"
-        opacity="0.07"
-        filter="url(#blur)"/>
-
-
-    <!-- 长安城墙 -->
-
-    <path
-        d="
-        M0 710
-        L260 710
-        L260 680
-        L450 680
-        L450 700
-        L690 700
-        L690 665
-        L900 665
-        L900 700
-        L1170 700
-        L1170 675
-        L1380 675
-        L1380 705
-        L1620 705
-        L1620 680
-        L1920 680
-        L1920 820
-        L0 820 Z"
-        fill="#171817"/>
-
-
-    <!-- 城门 -->
-
-    <rect
-        x="830"
-        y="650"
-        width="260"
-        height="170"
-        fill="#111211"/>
-
-    <path
-        d="
-        M870 820
-        L870 735
-        Q960 640 1050 735
-        L1050 820 Z"
-        fill="#050606"/>
-
-
-    <!-- 城楼主体 -->
-
-    <rect
-        x="865"
-        y="580"
-        width="190"
-        height="80"
-        fill="#171514"/>
-
-    <!-- 城楼屋檐 -->
-
-    <path
-        d="
-        M820 580
-        L960 520
-        L1100 580
-        L1080 595
-        L960 550
-        L840 595 Z"
-        fill="#0c0d0d"/>
-
-    <path
-        d="
-        M850 550
-        L960 490
-        L1070 550
-        L1050 560
-        L960 520
-        L870 560 Z"
-        fill="#0a0b0b"/>
-
-
-    <!-- 左侧楼阁 -->
-
-    <g opacity="0.8">
-
-        <rect
-            x="350"
-            y="620"
-            width="100"
-            height="130"
-            fill="#111211"/>
-
-        <path
-            d="
-            M320 620
-            L400 570
-            L480 620
-            Z"
-            fill="#090a0a"/>
-
-        <path
-            d="
-            M335 585
-            L400 545
-            L465 585
-            Z"
-            fill="#090a0a"/>
-
-    </g>
-
-
-    <!-- 右侧楼阁 -->
-
-    <g opacity="0.8">
-
-        <rect
-            x="1510"
-            y="600"
-            width="110"
-            height="150"
-            fill="#111211"/>
-
-        <path
-            d="
-            M1475 600
-            L1565 545
-            L1655 600
-            Z"
-            fill="#090a0a"/>
-
-        <path
-            d="
-            M1490 565
-            L1565 520
-            L1640 565
-            Z"
-            fill="#090a0a"/>
-
-    </g>
-
-
-    <!-- 城中灯火 -->
-
-    <g fill="#c99d55">
-
-        <circle cx="400" cy="655" r="5"/>
-        <circle cx="530" cy="685" r="4"/>
-        <circle cx="710" cy="690" r="5"/>
-        <circle cx="1180" cy="690" r="5"/>
-        <circle cx="1380" cy="700" r="4"/>
-        <circle cx="1570" cy="635" r="5"/>
-        <circle cx="1760" cy="690" r="4"/>
-
-    </g>
-
-
-    <!-- 前景树枝 -->
-
-    <path
-        d="
-        M0 930
-        C180 820 250 850 390 900
-        C510 940 600 900 690 850"
-        fill="none"
-        stroke="#080908"
-        stroke-width="18"
-        opacity="0.9"/>
-
-    <path
-        d="
-        M0 970
-        C170 870 280 920 420 950"
-        fill="none"
-        stroke="#090a09"
-        stroke-width="8"/>
-
-
-    <!-- 暗角 -->
-
-    <rect
-        width="1920"
-        height="1080"
-        fill="#000"
-        opacity="0.28"/>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+<defs>
+ <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#080b12"/><stop offset=".5" stop-color="#141822"/><stop offset="1" stop-color="#090a0c"/></linearGradient>
+ <radialGradient id="moon"><stop stop-color="#fff4cc"/><stop offset=".45" stop-color="#e7d9ad"/><stop offset="1" stop-color="#a89978" stop-opacity="0"/></radialGradient>
+ <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#403a38"/><stop offset="1" stop-color="#121315"/></linearGradient>
+ <filter id="blur"><feGaussianBlur stdDeviation="12"/></filter>
+</defs>
+<rect width="1920" height="1080" fill="url(#sky)"/>
+<circle cx="1510" cy="230" r="125" fill="url(#moon)" opacity=".85"/>
+<g fill="#d9cda9" opacity=".5">
+ <circle cx="180" cy="150" r="2"/><circle cx="310" cy="220" r="1.5"/><circle cx="520" cy="125" r="2"/>
+ <circle cx="720" cy="245" r="1.5"/><circle cx="880" cy="105" r="2"/><circle cx="1080" cy="190" r="1.5"/>
+ <circle cx="1280" cy="120" r="2"/><circle cx="1700" cy="150" r="1.5"/><circle cx="1840" cy="280" r="2"/>
+</g>
+<!-- 远山 -->
+<path d="M0 620 Q160 470 330 600 T650 550 T960 610 T1270 500 T1560 590 T1920 520 V760 H0Z" fill="#171b22"/>
+<path d="M0 700 Q180 560 390 690 T780 650 T1180 690 T1510 610 T1920 660 V820 H0Z" fill="#11151b" opacity=".9"/>
+<!-- 长安城墙 -->
+<path d="M0 705 H1920 V850 H0Z" fill="url(#wall)"/>
+<path d="M0 705 H1920" stroke="#66594d" stroke-width="5"/>
+<g fill="#3d3937">
+ <path d="M0 705 v-24 h28 v24 M45 705 v-24 h28 v24 M90 705 v-24 h28 v24 M135 705 v-24 h28 v24 M180 705 v-24 h28 v24 M225 705 v-24 h28 v24 M270 705 v-24 h28 v24 M315 705 v-24 h28 v24 M360 705 v-24 h28 v24 M405 705 v-24 h28 v24 M450 705 v-24 h28 v24 M495 705 v-24 h28 v24 M540 705 v-24 h28 v24 M585 705 v-24 h28 v24 M630 705 v-24 h28 v24 M675 705 v-24 h28 v24 M720 705 v-24 h28 v24 M765 705 v-24 h28 v24 M810 705 v-24 h28 v24 M855 705 v-24 h28 v24 M900 705 v-24 h28 v24 M945 705 v-24 h28 v24 M990 705 v-24 h28 v24 M1035 705 v-24 h28 v24 M1080 705 v-24 h28 v24 M1125 705 v-24 h28 v24 M1170 705 v-24 h28 v24 M1215 705 v-24 h28 v24 M1260 705 v-24 h28 v24 M1305 705 v-24 h28 v24 M1350 705 v-24 h28 v24 M1395 705 v-24 h28 v24 M1440 705 v-24 h28 v24 M1485 705 v-24 h28 v24 M1530 705 v-24 h28 v24 M1575 705 v-24 h28 v24 M1620 705 v-24 h28 v24 M1665 705 v-24 h28 v24 M1710 705 v-24 h28 v24 M1755 705 v-24 h28 v24 M1800 705 v-24 h28 v24 M1845 705 v-24 h28 v24 M1890 705 v-24 h28 v24"/>
+</g>
+<!-- 远处钟楼 -->
+<g>
+ <path d="M1450 650 L1490 430 L1530 650Z" fill="#19191b"/>
+ <path d="M1465 450 L1510 390 L1555 450Z" fill="#40302e"/>
+ <rect x="1478" y="475" width="64" height="22" fill="#b58b4d" opacity=".6"/>
+ <circle cx="1510" cy="486" r="7" fill="#171719"/>
+ <path d="M1500 390 L1510 350 L1520 390Z" fill="#4a3b33"/>
+</g>
+<!-- 屋檐剪影 -->
+<g fill="#0b0c0f">
+ <path d="M0 870 L90 760 L180 870Z"/><path d="M180 870 L300 740 L420 870Z"/>
+ <path d="M1510 870 L1630 735 L1750 870Z"/><path d="M1710 870 L1840 750 L1920 850 V900 H1710Z"/>
+</g>
+<!-- 朱雀大街的透视光带 -->
+<path d="M860 760 L1060 760 L1920 1080 H0Z" fill="#0b0c0f"/>
+<path d="M930 770 L990 770 L1250 1080 H670Z" fill="#18191b"/>
+<g fill="#b9793d" opacity=".55">
+ <circle cx="690" cy="820" r="9"/><circle cx="1230" cy="820" r="9"/>
+ <circle cx="520" cy="900" r="12"/><circle cx="1400" cy="900" r="12"/>
+ <circle cx="310" cy="1010" r="15"/><circle cx="1610" cy="1010" r="15"/>
+</g>
+<!-- 薄雾 -->
+<path d="M0 780 Q450 730 900 790 T1920 770 V920 Q1400 850 960 910 T0 900Z" fill="#b5aa92" opacity=".06" filter="url(#blur)"/>
 </svg>
