@@ -3,48 +3,42 @@ const ctx=canvas.getContext("2d");
 const mouseLight=document.querySelector(".mouse-light");
 const inkLayer=document.getElementById("inkLayer");
 let width,height;
-
 function resizeCanvas(){width=canvas.width=window.innerWidth;height=canvas.height=window.innerHeight}
 resizeCanvas();
 window.addEventListener("resize",resizeCanvas);
-
-const guqin=document.getElementById("guqin");
-const windbell=document.getElementById("windbell");
+const yinyue=document.getElementById("yinyue");
+const bgm=document.getElementById("bgm");
 const musicBtn=document.getElementById("musicBtn");
 const musicIcon=document.getElementById("musicIcon");
 const musicText=document.getElementById("musicText");
 let musicPlaying=false;
-guqin.volume=.45; windbell.volume=.18;
-
+yinyue.volume=.45; bgm.volume=.18;
 async function playMusic(){
   try{
-    await guqin.play();
-    await windbell.play();
+    await yinyue.play();
+    await bgm.play();
     musicPlaying=true;
-    musicText.textContent="听琴中";
+    musicText.textContent="听音乐中";
     musicIcon.textContent="♪";
     musicBtn.classList.add("music-playing");
   }catch(error){console.log("浏览器阻止了自动播放，请点击音乐按钮。")}
 }
 function pauseMusic(){
-  guqin.pause(); windbell.pause();
+  yinyue.pause(); bgm.pause();
   musicPlaying=false;
-  musicText.textContent="听琴";
+  musicText.textContent="听音乐";
   musicIcon.textContent="♫";
   musicBtn.classList.remove("music-playing");
 }
 musicBtn.addEventListener("click",()=>musicPlaying?pauseMusic():playMusic());
-
 document.getElementById("enterBtn").addEventListener("click",()=>{
   playMusic();
   document.getElementById("story").scrollIntoView({behavior:"smooth"});
 });
-
 document.addEventListener("mousemove",e=>{
   mouseLight.style.left=e.clientX+"px";
   mouseLight.style.top=e.clientY+"px";
 });
-
 let lastInkTime=0;
 document.addEventListener("mousemove",e=>{
   const now=Date.now();
@@ -52,7 +46,6 @@ document.addEventListener("mousemove",e=>{
   lastInkTime=now;
   createInk(e.clientX,e.clientY);
 });
-
 function createInk(x,y){
   const ink=document.createElement("div");
   ink.className="ink";
@@ -64,7 +57,6 @@ function createInk(x,y){
   inkLayer.appendChild(ink);
   setTimeout(()=>ink.remove(),1500);
 }
-
 const poems=[
   {text:"春风得意马蹄疾",author:"孟郊《登科后》"},
   {text:"一日看尽长安花",author:"孟郊《登科后》"},
@@ -77,7 +69,6 @@ const poems=[
   {text:"山寺桃花始盛开",author:"白居易《大林寺桃花》"},
   {text:"愿君多采撷",author:"王维《相思》"}
 ];
-
 class Petal{
   constructor(){this.reset();this.y=Math.random()*height}
   reset(){
@@ -104,11 +95,9 @@ class Petal{
     return distance<Math.max(this.size*3,20);
   }
 }
-
 const petals=[];
 const PETAL_COUNT=window.innerWidth<700?32:60;
 for(let i=0;i<PETAL_COUNT;i++)petals.push(new Petal());
-
 function showPoemPaper(){
   const paper=document.getElementById("poemPaper");
   const poemElement=document.getElementById("paperPoem");
@@ -127,7 +116,6 @@ function showPoemPaper(){
   }
   setTimeout(typeCharacter,400);
 }
-
 function clickPetal(x,y){
   for(let i=petals.length-1;i>=0;i--){
     const petal=petals[i];
@@ -137,19 +125,16 @@ function clickPetal(x,y){
   }
   return false;
 }
-
 canvas.addEventListener("click",e=>clickPetal(e.clientX,e.clientY));
 canvas.addEventListener("touchstart",e=>{
   const touch=e.touches[0];clickPetal(touch.clientX,touch.clientY);
 },{passive:true});
-
 function animate(){
   ctx.clearRect(0,0,width,height);
   petals.forEach(petal=>{petal.update();petal.draw()});
   requestAnimationFrame(animate);
 }
 animate();
-
 const sections=document.querySelectorAll(".section");
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
@@ -159,7 +144,6 @@ const observer=new IntersectionObserver(entries=>{
     }
   });
 },{threshold:.15});
-
 sections.forEach(section=>{
   section.style.opacity="0";
   section.style.transform="translateY(40px)";
