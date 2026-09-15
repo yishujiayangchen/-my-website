@@ -138,3 +138,44 @@ const observer = new IntersectionObserver(entries=>{
   });
 },{threshold:.15});
 document.querySelectorAll(".content-section .section-inner,.poem-section .section-inner,.about-section .section-inner").forEach(el=>observer.observe(el));
+
+
+/* ===== 鼠标视差 + 前景雾气 ===== */
+(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  let targetX = 0, targetY = 0;
+  let currentX = 0, currentY = 0;
+  let raf = 0;
+
+  const update = () => {
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+
+    hero.style.setProperty('--px', currentX.toFixed(2));
+    hero.style.setProperty('--py', currentY.toFixed(2));
+    hero.style.setProperty('--fog-x', (currentX * 1.8).toFixed(2));
+    hero.style.setProperty('--fog-y', (currentY * 1.1).toFixed(2));
+
+    raf = requestAnimationFrame(update);
+  };
+
+  const move = (x, y) => {
+    const r = hero.getBoundingClientRect();
+    const nx = ((x - r.left) / r.width - 0.5) * 2;
+    const ny = ((y - r.top) / r.height - 0.5) * 2;
+    targetX = Math.max(-1, Math.min(1, nx)) * 18;
+    targetY = Math.max(-1, Math.min(1, ny)) * 12;
+  };
+
+  hero.addEventListener('pointermove', e => move(e.clientX, e.clientY), {passive:true});
+  hero.addEventListener('pointerleave', () => {
+    targetX = 0;
+    targetY = 0;
+  }, {passive:true});
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    raf = requestAnimationFrame(update);
+  }
+})();
