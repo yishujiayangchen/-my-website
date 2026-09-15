@@ -80,12 +80,16 @@ function petalAt(x,y){
   });
   return hit;
 }
-canvas.addEventListener("click", e=>{
-  const i = petalAt(e.clientX,e.clientY);
+document.addEventListener("click", e=>{
+  if(e.target.closest("a,button,.poem-paper")) return;
+  const i=petalAt(e.clientX,e.clientY);
   if(i>=0) showPoem(poems[Math.floor(Math.random()*poems.length)]);
 });
-canvas.addEventListener("touchstart", e=>{
-  const t=e.touches[0]; const i=petalAt(t.clientX,t.clientY);
+document.addEventListener("touchend", e=>{
+  if(e.target.closest("a,button,.poem-paper")) return;
+  const t=e.changedTouches[0];
+  if(!t) return;
+  const i=petalAt(t.clientX,t.clientY);
   if(i>=0) showPoem(poems[Math.floor(Math.random()*poems.length)]);
 },{passive:true});
 
