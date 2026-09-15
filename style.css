@@ -163,3 +163,165 @@ body{min-width:320px}
   .hero-copy>p:not(.eyebrow){font-size:12px;line-height:1.5}
   .scroll-hint{margin-top:7px}
 }
+
+
+/* ===== 长安夜景沉浸动画增强 ===== */
+
+/* 1. 灯笼左右轻摆 */
+.lantern-row{
+  transform-origin:50% 8%;
+  animation:lanternSway 4.8s ease-in-out infinite;
+}
+.right-lanterns{animation-delay:-2.1s;}
+@keyframes lanternSway{
+  0%,100%{transform:rotate(-1.5deg)}
+  50%{transform:rotate(1.8deg)}
+}
+
+/* 灯笼自身产生微弱光晕呼吸 */
+.lantern-row:before{
+  animation:lanternBreath 2.8s ease-in-out infinite;
+}
+.right-lanterns:before{animation-delay:-1.3s;}
+@keyframes lanternBreath{
+  0%,100%{opacity:.72;filter:brightness(.9)}
+  50%{opacity:1;filter:brightness(1.28)}
+}
+
+/* 酒楼窗灯呼吸 */
+.restaurant-body i{
+  animation:windowBreath 3.6s ease-in-out infinite;
+}
+.restaurant-body i:nth-of-type(2){animation-delay:-1.1s}
+.restaurant-body i:nth-of-type(3){animation-delay:-2.2s}
+.restaurant-right .restaurant-body i{animation-delay:-1.7s}
+@keyframes windowBreath{
+  0%,100%{opacity:.42;filter:brightness(.85)}
+  45%{opacity:.82;filter:brightness(1.25)}
+  60%{opacity:.62;filter:brightness(1.05)}
+}
+
+/* 2. 月光缓慢变化 */
+.moon{
+  animation:moonPulse 8s ease-in-out infinite;
+  transform-origin:center;
+}
+@keyframes moonPulse{
+  0%,100%{opacity:.78;transform:scale(.98);filter:brightness(.94)}
+  50%{opacity:.94;transform:scale(1.035);filter:brightness(1.08)}
+}
+
+/* 月光扩散层 */
+.moon:after{
+  content:"";
+  position:absolute;
+  inset:-35px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(238,225,185,.18),transparent 68%);
+  animation:moonAura 8s ease-in-out infinite;
+}
+@keyframes moonAura{
+  0%,100%{transform:scale(.88);opacity:.35}
+  50%{transform:scale(1.12);opacity:.72}
+}
+
+/* 3. 马车缓慢穿过朱雀大街 */
+.carriage-one{
+  animation:carriageRoad 26s linear infinite;
+}
+.carriage-two{
+  animation:carriageRoadReverse 31s linear infinite;
+  animation-delay:-12s;
+}
+@keyframes carriageRoad{
+  0%{transform:translate3d(-220px,18px,0) scale(.72);opacity:0}
+  8%{opacity:1}
+  48%{transform:translate3d(45vw,0,0) scale(.82);opacity:1}
+  88%{opacity:1}
+  100%{transform:translate3d(120vw,-4px,0) scale(.92);opacity:0}
+}
+@keyframes carriageRoadReverse{
+  0%{transform:translate3d(120vw,12px,0) scale(.62);opacity:0}
+  8%{opacity:.85}
+  52%{transform:translate3d(15vw,0,0) scale(.72);opacity:.9}
+  90%{opacity:.85}
+  100%{transform:translate3d(-230px,-3px,0) scale(.78);opacity:0}
+}
+
+/* 车厢随道路轻微颠簸 */
+.carriage-box,.carriage-roof{
+  animation:carriageBounce .9s ease-in-out infinite alternate;
+}
+@keyframes carriageBounce{
+  from{transform:translateY(0)}
+  to{transform:translateY(2px)}
+}
+
+/* 4. 远近景鼠标视差：由 script.js 写入 --px / --py */
+.chang-an-scene{
+  transform:translate3d(calc(var(--px,0) * .35px),calc(var(--py,0) * .35px),0);
+  transition:transform .18s ease-out;
+  will-change:transform;
+}
+.far-mountains{
+  transform:translate3d(calc(var(--px,0) * -.9px),calc(var(--py,0) * -.45px),0) scale(1.04);
+  transition:transform .35s ease-out;
+}
+.city-wall{
+  transform:translate3d(calc(var(--px,0) * .45px),calc(var(--py,0) * .25px),0);
+  transition:transform .25s ease-out;
+}
+.restaurant-left{transform:translate3d(calc(var(--px,0) * .8px),calc(var(--py,0) * .45px),0)}
+.restaurant-right{transform:translate3d(calc(var(--px,0) * -.8px),calc(var(--py,0) * .45px),0)}
+.vermilion-arch{transform:translate3d(calc(-50% + var(--px,0) * .25px),calc(var(--py,0) * .15px),0)}
+.city-gate{transform:translate3d(calc(-50% + var(--px,0) * .18px),calc(var(--py,0) * .12px),0)}
+.street{transform:translate3d(calc(var(--px,0) * 1.1px),calc(var(--py,0) * .7px),0) scale(1.01)}
+.lantern-row{transform:translate3d(calc(var(--px,0) * 1.35px),calc(var(--py,0) * .75px),0);transform-origin:50% 8%}
+.carriage{transform-origin:center bottom}
+
+/* 5. 鼠标移动时前景雾气移动 */
+.hero:before{
+  content:"";
+  position:absolute;
+  z-index:17;
+  inset:-12%;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 20% 78%,rgba(201,190,164,.10),transparent 38%),
+    radial-gradient(ellipse at 78% 84%,rgba(201,190,164,.08),transparent 40%),
+    linear-gradient(180deg,transparent 50%,rgba(206,196,174,.055) 78%,transparent 100%);
+  filter:blur(18px);
+  transform:translate3d(calc(var(--fog-x,0) * 1px),calc(var(--fog-y,0) * 1px),0) scale(1.05);
+  transition:transform .6s ease-out;
+  animation:fogBreath 9s ease-in-out infinite;
+}
+@keyframes fogBreath{
+  0%,100%{opacity:.55}
+  50%{opacity:.9}
+}
+
+/* 远景雾带 */
+.night-haze{
+  transform:translate3d(calc(var(--fog-x,0) * -.35px),calc(var(--fog-y,0) * -.18px),0);
+  transition:transform .8s ease-out;
+}
+
+/* 移动端降低视差幅度，避免画面晃动过强 */
+@media(max-width:700px){
+  .chang-an-scene{transform:translate3d(calc(var(--px,0) * .16px),calc(var(--py,0) * .16px),0)}
+  .far-mountains{transform:translate3d(calc(var(--px,0) * -.35px),calc(var(--py,0) * -.2px),0) scale(1.02)}
+  .city-wall{transform:translate3d(calc(var(--px,0) * .2px),calc(var(--py,0) * .12px),0)}
+  .restaurant-left{transform:translate3d(calc(var(--px,0) * .35px),0,0)}
+  .restaurant-right{transform:translate3d(calc(var(--px,0) * -.35px),0,0)}
+  .street{transform:translate3d(calc(var(--px,0) * .45px),calc(var(--py,0) * .3px),0)}
+  .lantern-row{transform:translate3d(calc(var(--px,0) * .55px),calc(var(--py,0) * .3px),0)}
+  .carriage-two{display:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .lantern-row,.lantern-row:before,.restaurant-body i,.moon,.moon:after,
+  .carriage-one,.carriage-two,.carriage-box,.carriage-roof,.hero:before{
+    animation:none!important;
+    transition:none!important;
+  }
+}
