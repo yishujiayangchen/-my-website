@@ -56,3 +56,110 @@ footer{text-align:center;padding:30px;background:#080808;color:#777;font-size:12
 
 @media(max-width:800px){.nav-links{gap:12px}.nav-links a{font-size:10px}.hero-copy{left:7%;top:18%}.moon{width:60px;height:60px;right:10%;bottom:58%}.restaurant{width:29%}.vermilion-arch{width:55%}.city-gate{width:30%}.story-grid{grid-template-columns:1fr}.content-section,.poem-section,.about-section{padding:90px 7vw}.poem-paper{padding:55px 35px}.carriage-two{display:none}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;scroll-behavior:auto!important}}
+
+
+/* ===== 响应式增强：桌面 + 手机 ===== */
+body{min-width:320px}
+.navbar{min-height:64px}
+.hero{height:100svh;min-height:650px}
+#petalCanvas{pointer-events:none}
+
+@media (max-width:1000px){
+  .navbar{height:auto;padding:10px 5vw;gap:12px}
+  .nav-links{gap:12px;flex-wrap:wrap;justify-content:flex-end}
+  .nav-links a{font-size:11px;line-height:20px}
+  .hero-copy{left:6vw;top:18%;max-width:86vw}
+  .hero h1{font-size:clamp(46px,9vw,82px)}
+  .restaurant{width:24%}
+  .vermilion-arch{width:50%}
+  .city-gate{width:28%}
+}
+
+@media (max-width:700px){
+  .navbar{
+    display:block;
+    min-height:58px;
+    padding:9px 15px;
+    background:linear-gradient(#050505ee,#050505aa);
+  }
+  .brand{text-align:center;font-size:15px;line-height:25px}
+  .nav-links{
+    justify-content:center;
+    gap:2px 13px;
+    margin-top:3px;
+  }
+  .nav-links a{font-size:10px;line-height:20px;white-space:nowrap}
+
+  .hero{height:100svh;min-height:620px}
+  .hero-copy{
+    left:20px;right:20px;top:22%;
+    max-width:none;
+  }
+  .eyebrow{font-size:9px;letter-spacing:.25em}
+  .hero h1{
+    font-size:clamp(40px,12.5vw,66px);
+    line-height:1.2;
+    letter-spacing:.1em;
+    margin:14px 0 17px;
+    white-space:nowrap;
+  }
+  .hero-copy>p:not(.eyebrow){
+    font-size:13px;
+    line-height:1.9;
+    letter-spacing:.06em;
+  }
+  .scroll-hint{
+    margin-top:15px;
+    padding:8px 0;
+    font-size:10px;
+  }
+
+  .moon{width:58px;height:58px;right:9%;top:14%;bottom:auto}
+  .far-mountains{bottom:30%;height:27%}
+  .city-wall{bottom:33%;height:12%}
+  .city-gate{bottom:32%;width:38%;height:20%}
+  .vermilion-arch{bottom:24%;width:68%;height:20%}
+  .restaurant{bottom:24%;width:30%;height:21%}
+  .restaurant-left{left:-3%}.restaurant-right{right:-3%}
+  .lantern-row{bottom:31%;width:23%}
+  .street{height:39%}
+  .carriage{bottom:10%;transform:scale(.62)}
+  .carriage-two{display:none}
+  .pedestrians{left:28%;bottom:17%}
+  .pedestrians i{margin:0 6px;transform:scale(.7)}
+
+  .content-section,.poem-section,.about-section{padding:76px 20px}
+  .content-section h2,.poem-section h2,.about-section h2{
+    font-size:clamp(30px,9vw,48px);
+    line-height:1.35;
+  }
+  .lead{font-size:14px;line-height:2}
+  .story-grid{grid-template-columns:1fr;gap:28px;margin-top:42px}
+  .flower-art{justify-content:center;gap:12px;font-size:46px;margin:40px 0 18px}
+  .poem-paper{
+    width:calc(100vw - 28px);
+    min-height:390px;
+    max-height:84svh;
+    padding:52px 25px 32px;
+  }
+  #poemText{height:275px;font-size:20px;line-height:2.05}
+  .close-poem{width:42px;height:42px;right:8px;top:7px}
+}
+
+@media (max-width:390px){
+  .navbar{min-height:91px}
+  .hero-copy{top:20%}
+  .hero h1{font-size:38px}
+  .restaurant{display:none}
+  .vermilion-arch{width:74%}
+  .city-gate{width:42%}
+}
+
+@media (max-height:520px) and (orientation:landscape){
+  .navbar{min-height:48px;padding:5px 14px}
+  .hero{min-height:520px}
+  .hero-copy{top:14%;left:5vw}
+  .hero h1{font-size:46px;margin:7px 0}
+  .hero-copy>p:not(.eyebrow){font-size:12px;line-height:1.5}
+  .scroll-hint{margin-top:7px}
+}
